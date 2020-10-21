@@ -25,19 +25,19 @@
   
   ##### Tutor
   - **_Course._**
-   - Add Course.
+   1. Add Course.
     - Add Article.
     - Edit Article.
     - Delete Article.
-   - Edit Course.
-   - Delete Course.
+   1. Edit Course.
+   1. Delete Course.
   - **_Quizzes._**
-   - Add Quiz.
+   1 Add Quiz.
     - Add Multiple Question.
     - Edit Question/Options.
-   - Edit Quiz.
-   - Delete Quiz.
-   - View Result.
+   1. Edit Quiz.
+   1. Delete Quiz.
+   1. View Result.
   
   #####Student
   - **Give Quiz.**
