@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block body_block %}
+<h4>Quiz : <strong style="color: green;"> {{quiz.title}} </strong></h4>
+<br><br>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr style="text-align: center;">
+            <th>#</th>
+            <th>Student</th>
+            <th>Score</th>
+            <th>Passed</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in results %}
+        <tr style="text-align: center;">
+            <th>{{forloop.counter}}</th>
+            <td style="color: green;"><strong>{{item.student}}</strong></td>
+            <td>{{item.score}}</td>
+            {% if item.score > 60 %}
+            <td><i class="fas fa-check-circle" style="color: green;"></i></td>
+            {% else %}
+            <td><i class="fas fa-times-circle" style="color: rgb(223, 0, 0);"></i></td>
+            {% endif %}
+        </tr>
+        {% empty %}
+        <tr style="text-align: center;">
+            <td colspan="4">No one took this <strong>quiz</strong> yet...</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

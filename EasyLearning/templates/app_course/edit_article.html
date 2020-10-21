@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block css_block %}
+<style>
+    .course-div {
+        background-color: rgb(172, 170, 170);
+        padding: 20px;
+        border-radius: 15px;
+    }
+</style>
+{% endblock %}
+
+{% block body_block %}
+<h3>Edit Article</h3><br>
+<br>
+<h5 style="text-align: left;">Article</h5>
+
+<div class="course-div">
+    <form method="POST">
+        {{form|crispy}}
+        {% csrf_token %}
+        <button type="submit" class="btn btn-success btn-sm">Save</button>
+    </form>
+</div>
+{% endblock %}

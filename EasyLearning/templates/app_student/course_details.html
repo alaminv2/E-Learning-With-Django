@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load custom_filter %}
+
+
+{% block css_block %}
+<style>
+    #div-1 {
+        background-color: rgb(199, 199, 199);
+        padding: 20px;
+        border-radius: 15px;
+        text-align: left;
+    }
+
+    #div-2 {
+        background-color: rgb(199, 199, 199);
+        padding: 20px;
+        border-radius: 15px;
+    }
+
+    #div-3 {
+        background-color: rgb(175, 174, 174);
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    #div-3 a {
+        text-decoration: none;
+        color: rgb(9, 65, 62);
+    }
+
+    #div-3 a:hover {
+        color: olive;
+        text-decoration: none;
+    }
+
+    #div-3 p {
+        text-align: left;
+    }
+</style>
+{% endblock %}
+
+{% block body_block %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8" id="div-1">
+            <h4>Course Name : {{course}}</h4>
+            <h4>Course Catagory : {{course.catagory}}</h4>
+            <h4>Course Author : {{course.author}}</h4>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col" id="div-2">
+            <h4>Belonging Articles :</h4>
+            <br><br>
+            {% for item in course.article_course.all %}
+            <div class="row" id="div-3">
+                <h4><a href="{% url 'app_student:read' pk=item.pk %}"> {{item.title}} </a></h4>
+                <p> {{item.content|linebreaks|range_article}} <a href="{% url 'app_student:read' pk=item.pk %}"><b>Read
+                            More</b></a></p>
+            </div>
+            <br>
+            {% empty %}
+            <h5>No Articles.....</h5>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block body_block %}
+{% if created %}
+<h3>Edit Quiz</h3>
+{% else %}
+<h3>Add Quiz</h3>
+{% endif %}
+<form method="POST">
+    {{form|crispy}}
+    {% csrf_token %}
+    <button type="submit" class="btn btn-success btn-sm">Save</button>
+</form>
+{% endblock %}

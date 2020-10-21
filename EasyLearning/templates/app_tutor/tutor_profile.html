@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block body_block %}
+<h5>Logged in as <b style="color: green;">{{user.username}}</b></h5>
+<br><br>
+<div class="row">
+    <div class="col-6">
+        <h3 style="text-align: left;">My Courses</h3>
+        <a href="{% url 'app_course:add_course' %}" class=" btn btn-info btn-sm">Add Course</a>
+        <br><br>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr style="text-align: center;">
+                    <th>#</th>
+                    <th>Course Name</th>
+                    <th>Number of Articles</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in user.course_author.all %}
+                <tr style="text-align: center;">
+                    <th>{{forloop.counter}}</th>
+                    <td><a href="{% url 'app_course:course_details' pk=item.pk %}"
+                            style="text-decoration: none; color: green;">
+                            <b>{{item.name}} </b></a></td>
+                    <td>{{item.article_course.count}}</td>
+                    <td>
+                        <a href="{% url 'app_course:delete_course' pk=item.pk %}"
+                            class="badge badge-danger"><strong>x</strong></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- For Quiz List of current User -->
+
+    <div class="col-6" style="border-left: solid green;">
+        <h3 style="text-align: left;">My Quizzes</h3>
+        <a href="{% url 'app_quiz:add_quiz' %}" class=" btn btn-info btn-sm">Add Quiz</a>
+        <br><br>
+        <table class="table table-bordered table-hover" style="text-align: center;">
+            <thead>
+                <tr style="text-align: center;">
+                    <th>#</th>
+                    <th>Quiz Name</th>
+                    <th>View Result</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in user.quiz_author.all %}
+                <tr style="text-align: center;">
+                    <th>{{forloop.counter}}</th>
+                    <td><a href="{% url 'app_quiz:quiz_details' quiz_pk=item.pk %}"
+                            style="text-decoration: none; color: green;">
+                            <b>{{item.title}} </b></a></td>
+                    <td><a href="{% url 'app_tutor:result' quiz_pk=item.pk %}"><i class="fa fa-list"
+                                style="color: green;" aria-hidden="true"></i></a></td>
+                    <td><a href="{% url 'app_quiz:delete_quiz' quiz_pk=item.pk %}"
+                            class="badge badge-danger"><strong>x</strong></a></td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4">You have No Quiz Yet...!</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+{% endblock %}

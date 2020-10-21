@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block css_block %}
+<style>
+    .div-8 {
+        background-color: rgb(198, 200, 201);
+        padding-top: 25px;
+        border-radius: 15px;
+        text-align: left;
+    }
+
+    .div-8 a {
+        text-decoration: none;
+        color: rgb(36, 77, 151);
+    }
+
+    .div-8 a:hover {
+        background: rgba(36, 16, 83, 0.4);
+        padding: 10px 20px;
+        border-radius: 10px;
+        color: white;
+    }
+
+    #del a {
+        color: black;
+        padding: 3px;
+    }
+
+    #del a:hover {
+        background: none;
+        padding: 3px;
+        border-radius: 0px;
+        color: white;
+    }
+
+    .div-4 {
+        background-color: rgb(209, 211, 212);
+        padding-top: 25px;
+        border-radius: 15px;
+        padding-top: 20px;
+        text-align: left;
+
+    }
+
+    .div-4 h6 a {
+        padding: 10px 0px;
+        color: rgb(36, 77, 151);
+        margin-left: 25px;
+    }
+
+    .div-4 h6 a:hover {
+        background: rgb(130, 125, 138);
+        padding: 10px 20px;
+        border-radius: 10px;
+        color: rgb(255, 224, 224);
+    }
+</style>
+{% endblock %}
+
+
+{% block body_block %}
+<div class="container">
+    <br>
+    <span><a href="{% url 'app_QNA:ask' %}" class="btn btn-info">Ask Question</a></span>
+    <br><br>
+    <div class="row">
+        <div class="col-sm-9 div-8">
+            {% for question in questions %}
+            <span style="color: green;"><strong>@{{question.author.username}} </strong></span>
+            <h4><a href="{% url 'app_QNA:question_details' ques_pk=question.pk %}"> {{question.title}} </a></h4>
+            <span class="badge badge-dark">Answers in this question -> {{question.ques.all.count}}</span>
+            {% if user == question.author %}
+            <span class="badge badge-danger" id="del"><a
+                    href="{% url 'app_QNA:delete_ques' ques_pk=question.pk %}">x</a></span>
+            {% endif %}
+            <hr>
+            {% empty %}
+            <h4>......No Question......</h4>
+            {% endfor %}
+        </div>
+        <div class="col-sm-3 div-4">
+            <h4>Catagories</h4>
+            <hr style="border: 2px dotted green;">
+            {% for item in catagories %}
+            <h6><a href="{% url 'app_QNA:ques_of' catg_pk=item.pk %}"> {{item}} </a></h6>
+            <hr>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

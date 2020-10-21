@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block body_block %}
+<h3>Take Quiz</h3>
+<br> <br>
+
+<form method="POST" style="text-align: left;">
+    <h5>Quiz : {{question.quiz.title}} </h5>
+    <br>
+    <strong> {{question.title}} </strong>
+    {{form|crispy}}
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+</form>
+
+{% endblock %}

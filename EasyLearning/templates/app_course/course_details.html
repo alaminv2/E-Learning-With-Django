@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block css_block %}
+<style>
+    #div-1 {
+        background-color: rgb(199, 199, 199);
+        padding: 20px;
+        border-radius: 15px;
+        text-align: left;
+    }
+
+    #div-2 {
+        background-color: rgb(199, 199, 199);
+        padding: 20px;
+        border-radius: 15px;
+    }
+</style>
+{% endblock %}
+
+{% block body_block %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8" id="div-1">
+            <h4>Course Name : {{course}}</h4>
+            <h4>Course Catagory : {{course.catagory}}</h4>
+            <h4>Course Author : {{course.author}}</h4>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col" id="div-2">
+            <h4>Belonging Articles :</h4>
+            <a href="{% url 'app_course:add_article' pk=course.pk %}" class="btn btn-info btn-sm">Add Article</a>
+            <br><br>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr style="text-align: center;">
+                        <th>#</th>
+                        <th>Article Name</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in course.article_course.all %}
+                    <tr style="text-align: center;">
+                        <th>{{forloop.counter}}</th>
+                        <td><a href="{% url 'app_course:article_details' pk=item.pk %}"
+                                style="text-decoration: none; color: green;"> {{item.title}} </a></td>
+                        <td>
+                            <a href="{% url 'app_course:delete_article' pk=item.pk %}"
+                                class="btn btn-danger btn-sm">Delete</a>
+                            &nbsp;&nbsp;&nbsp;
+                            <a href="{% url 'app_course:edit_article' pk=item.pk %}"
+                                class="btn btn-warning btn-sm">Edit</a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr style="text-align: center;">
+                        <td colspan="3">This Course Has No Article Yet</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

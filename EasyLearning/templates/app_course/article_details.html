@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block css_block %}
+<style>
+    #div-1 {
+        background-color: rgb(199, 199, 199);
+        padding: 10px 20px;
+        border-radius: 15px;
+        text-align: left;
+    }
+
+    #div-2 {
+        background-color: rgb(199, 199, 199);
+        padding: 20px;
+        border-radius: 15px;
+        text-align: left;
+        width: auto;
+    }
+</style>
+{% endblock %}
+
+
+{% block body_block %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <span class="badge badge-info" style="float: left; padding: 5px; "><a
+                    href="{% url 'app_course:course_details' pk=article.course.pk %}"
+                    style="color: white; text-decoration: none;">
+                    <- Back to course details</a></span>
+            <br><br>
+            <div class="row" id="div-1">
+                <h4>{{article.title}}</h4>
+            </div>
+            <br>
+            <div class="row" id="div-2">
+                <p>{{article.content|linebreaks}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block css_block %}
+<style>
+    #div-1 {
+        background-color: rgb(199, 199, 199);
+        padding: 10px 20px;
+        border-radius: 15px;
+        text-align: left;
+    }
+
+    #div-2 {
+        background-color: rgb(199, 199, 199);
+        padding: 20px;
+        border-radius: 15px;
+        text-align: left;
+        width: auto;
+    }
+
+    .custom {
+        padding: 10px 20px;
+        border-radius: 15px;
+        text-align: left;
+    }
+</style>
+{% endblock %}
+
+
+{% block body_block %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <span class="badge badge-info" style="float: left; padding: 5px; "><a href="{% url 'app_QNA:asked_list' %}"
+                    style="color: white; text-decoration: none;">
+                    <- Back to Questions</a></span>
+            <br><br>
+            <div class="row" id="div-1">
+                <h4>{{question.title}}</h4>
+            </div>
+            <br>
+            <div class="row" id="div-2">
+                <p style="overflow: scroll;">{{question.text|linebreaks}}</p>
+            </div>
+            <!-- Answers -->
+            <br>
+            <hr>
+            <div class="row custom">
+                <form method="POST" style="width: 75%;">
+                    {{form|crispy}}
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-info btn-sm">Post</button>
+                </form>
+            </div>
+
+            <div class="row custom">
+                <div class="col">
+                    <h4>Answers : {{num_of_ans}}</h4>
+                    <br>
+                    {% for reply in replies %}
+                    <div class="row">
+                        <div class="col-3">
+                            <span style="color: green;"><i><b>{{reply.author}}</b></i></span>
+                        </div>
+                        <div class="col-9">
+                            <p style="overflow: scroll;">{{reply.text|linebreaks}}</p>
+                        </div>
+                    </div>
+                    <hr style="border: .5px solid black">
+                    {% empty %}
+                    <h6>No Answers...........</h6>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

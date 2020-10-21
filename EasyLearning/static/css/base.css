@@ -1,0 +1,55 @@
+body {
+  background-color: rgb(70, 70, 102);
+}
+
+.main-div {
+  width: 1000px;
+  height: auto;
+  background-color: rgb(219, 219, 219);
+  border: 1px solid rgb(148, 38, 142);
+  border-radius: 10px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  padding: 25px;
+}
+
+.mynav {
+  background-color: rgb(42, 23, 94);
+}
+
+.mynav-menu {
+  margin-left: 150px;
+}
+
+.mynav-item {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.mynav-item img {
+  width: 75px;
+  height: 55px;
+  overflow: hidden;
+  padding: 7px;
+  border-radius: 25px;
+  object-fit: cover;
+}
+
+.mynav-item a {
+  text-decoration: none;
+  color: aliceblue;
+  background-color: rgb(42, 23, 94);
+  padding: 19.5px 8px;
+  overflow: hidden;
+}
+
+.mynav-item a:hover {
+  background-color: rgb(70, 70, 102);
+}
+/* .logo {
+  width: 200px;
+  height: 70px;
+  padding: 8px 15px;
+  margin-left: 200px;
+  border-radius: 10px;
+} */

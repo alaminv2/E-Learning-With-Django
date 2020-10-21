@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block body_block %}
+<ul style="text-align: left;">
+    <h3>-------All Users-------</h3>
+    <li>Show all Courses</li>
+    <li>Show all Courses by Catagory</li>
+    <li>Read all <strong>articles</strong> according to courses</li>
+    <li>Ask questions <strong>(Forum)</strong></li>
+    <li>Give answers to others questions</li>
+    <br>
+    <h3>-------Teachers-------</h3>
+    <li><strong>Coursse</strong></li>
+    <ul>
+        <li>Add Courses</li>
+        <ul>
+            <li>Add Articles</li>
+            <li>Edit Articles</li>
+            <li>Delete Articles</li>
+        </ul>
+        <li>Edit Course</li>
+        <li>Delete Course</li>
+    </ul>
+    <li><strong>Quizzes</strong></li>
+    <ul>
+        <li>Add Quiz</li>
+        <ul>
+            <li>Add Questions</li>
+            <li>Delete Questions</li>
+            <li>Add Options</li>
+        </ul>
+        <li>Edit Quiz Name</li>
+        <li>Delete Entire Quiz</li>
+        <li>View individual result for each quiz</li>
+    </ul>
+    <br>
+    <h3>-------Students-------</h3>
+    <li>Take Quizzes</li>
+    <li>See Score of each quiz</li>
+</ul>
+{% endblock %}

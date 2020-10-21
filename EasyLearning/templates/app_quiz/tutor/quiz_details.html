@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+
+{% block body_block %}
+<h3> Quiz : <a href="{% url 'app_quiz:edit_quiz' quiz_pk=quiz_pk %}">{{quiz.title}} </a></h3>
+<br><br>
+<a href="{% url 'app_quiz:add_question' quiz_pk=quiz_pk %}" class="btn btn-info">Add Question</a>
+<br><br>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Question Title</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for question in question_list %}
+        <tr>
+            <th> {{forloop.counter}} </th>
+            <td><a href="{% url 'app_quiz:add_options' quiz_pk=quiz_pk ques_pk=question.pk %}"> {{question.title}} </a>
+            </td>
+            <td><a href="{% url 'app_quiz:delete_question' ques_pk=question.pk quiz_pk=quiz_pk %}"
+                    class="badge badge-danger"><strong>x</strong></a></td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">No Question Here...!</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
