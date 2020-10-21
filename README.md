@@ -39,7 +39,7 @@
    1. Delete Quiz.
    1. View Result.
   
-  #####Student
+  ##### Student
   - **Give Quiz.**
   - **See Result.**
 
