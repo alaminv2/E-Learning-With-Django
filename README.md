@@ -2,7 +2,7 @@
 
 ## Description
   A simple E-Learning Website That has following Feature--->
-  ##### ser Type
+  ##### User Type
   - Admin
   - Tutor
   - Student
